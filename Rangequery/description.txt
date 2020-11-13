@@ -1,0 +1,19 @@
+
+                                      Preprocessing          Query               Comment
+ 1.Bruteforce                          O(1)                   O(N)
+ 
+ 2.Dynamic P.                          O(N*N)                 O(1)
+ 
+ 3.Segment Tree                        O(N)                   O(NlogN)          Use lazy version if it needs to be update a range at a time
+ 
+ 4.Sparse Table                        O(NlogN)               O(1)              Cant update anything
+ 
+ 5.Longest Common Ancestors            O(N)                   O(1)
+ 
+ 6.BIT or Fenwick Tree                 O(NlogN)               O(LogN)           Update only a single element
+ 
+ 
+ Sliding Window
+ --------------
+ The sliding window algorithm can be used to solve problems that involve linear sequences, such as arrays. A window is a contiguous sequence which is part of an array.
+ As the name suggests, the window is slid over the array and it gives us the minimum/maximum/sum of every contiguous sequence of the array in O(n) time
