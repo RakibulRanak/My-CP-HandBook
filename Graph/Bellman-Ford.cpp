@@ -7,50 +7,41 @@ int main()
 {
 	int node, edge, cost;
 	cin >> node >> edge;
-	//for storinng node>(node,cost)
-	vector<pair<int, int>>vec[node + 1];
+	//for storinng {from,to,cost}
+	vector<tuple<int, int, int>>edges;
 	for (int i = 0; i < edge; i++)
 	{
 		int from, to;
 		cin >> from >> to >> cost;
-		vec[from].push_back({to, cost});
+		edges.push_back({from, to, cost});
 	}
-
-	map<int, int>visited;
 	int distance[node + 1];
 	for (int i = 1; i <= node; i++)
 	{
 		distance[i] = INF;
 	}
-	priority_queue<pair<int, int>>q;
-	//queue of {distance,node} pair
 	//we by default start from index 1, distance is zero
 	distance[1] = 0;
-	q.push({0, 1});
 	map<int, int>parent;
 	parent[1] = -1;
-	while (!q.empty())
+	for (int i = 1; i < node; i++)
 	{
-		int top = q.top().second;
-		q.pop();
-		if (!visited[top])
+		bool flag = true;
+		for (auto e : edges)
 		{
-			visited[top] = 1;
-			for (auto u : vec[top])
+			int from, to, cost;
+			tie(from, to, cost) = e;
+			if (distance[from] + cost < distance[to])
 			{
-				int to = u.first, cost = u.second;
-				if (distance[top] + cost < distance[to])
-				{
-					distance[to] = distance[top] + cost;
-					/*as priority queue by default stores descending, we are storing as
-					 negative as we need ascending in dijkstra,it is just used to select
-					 the less weighted node first , by the algorithm rule
-					*/
-					q.push({ -distance[to], to});
-					parent[to] = top;
-				}
+				distance[to] = distance[from] + cost;
+				parent[to] = from;
+				flag = false;
 			}
 		}
+		//if no node's distance is changed , break the loop
+		if (flag)
+			break;
+
 	}
 	vector<int>path;
 	int end = node; //just assume
