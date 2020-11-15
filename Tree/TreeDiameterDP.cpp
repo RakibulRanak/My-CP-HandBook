@@ -10,19 +10,14 @@ int downPath[200001];
 
 void eval_downPaths(int src, int par)
 {
-    int bestChildDownPath = 0;
-    bool leaf = 1;
     for (int child : tree[src])
     {
         if (child != par)
         {
-            leaf = 0;
             eval_downPaths(child, src);
-            bestChildDownPath = max(bestChildDownPath, downPath[child]);
+            downPath[src] = max(downPath[src], 1 + downPath[child]);
         }
     }
-    if (leaf)downPath[src] = 0;
-    else downPath[src] = 1 + bestChildDownPath;
 }
 
 void solve(int src, int par)
@@ -60,7 +55,8 @@ int main() {
 
     int n;
     cin >> n;
-    for (int i = 0; i < n; i++)
+    //n-1 edges when n is node, in tree
+    for (int i = 0; i < n - 1; i++)
     {
         int u, v;
         cin >> u >> v;
