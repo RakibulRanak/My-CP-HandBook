@@ -2,6 +2,7 @@
 using namespace std;
 #define INF 1000000000
 //INF should be modified according to needs
+//complexity node*edge
 
 int main()
 {
