@@ -1,4 +1,4 @@
-//Max_Heap implementation
+//Min_Heap implementation
 #include<bits/stdc++.h>
 using namespace std;
 #define SIZE 1001
@@ -17,7 +17,7 @@ void heap_push(int val)
     heap[heapSize] = val;    //Push 1st element to the end of heap
     int curr = heapSize;
     //percolate-up
-    while (curr > 0 and heap[(curr - 1) / 2] < heap[curr])
+    while (curr > 0 and heap[(curr - 1) / 2] > heap[curr])
     {
         int temp = heap[(curr - 1) / 2];
         heap[(curr - 1) / 2] = heap[curr];
@@ -49,14 +49,14 @@ int heap_pop()
             child = 2 * curr + 1;
         else    //If both left and right child are present then find which is maximum
         {
-            if (heap[2 * curr + 1] > heap[2 * curr + 2])
+            if (heap[2 * curr + 1] < heap[2 * curr + 2])
                 child = 2 * curr + 1;
             else
                 child = 2 * curr + 2;
         }
 
         //If curr node is lower than max(leftChild,rightChild) then swap and do max_heapify again for that child
-        if (heap[curr] < heap[child])
+        if (heap[curr] > heap[child])
         {
             int temp = heap[curr];
             heap[curr] = heap[child];
