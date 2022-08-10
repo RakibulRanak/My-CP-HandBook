@@ -21,8 +21,7 @@ int main() {
     memset(ara2, -1, sizeof(ara2));
     cout << ara2[1] << endl;
     fill(ara2, ara2 + n, 1212);
-    cout << ara2[1
-    ];
+    cout << ara2[1];
 
 
 

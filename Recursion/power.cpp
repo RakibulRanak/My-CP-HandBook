@@ -30,5 +30,13 @@ int main()
 	cout << ans << endl;
 	ans = power2(2, 3);
 	cout << ans << endl;
+	//pow always returns double, not safe to use
+
+
+	// pow(2,3);
+	cout << (1LL << 3) << endl;
+	int ara[3] = { -1,0,1 };
+	if (ara[0])
+		cout << "hi" << endl;
 }
 
